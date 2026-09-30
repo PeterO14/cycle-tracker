@@ -8,6 +8,7 @@ type CycleContextValue = CycleData & {
   startPeriod: (dateKey: string) => Promise<void>;
   endCurrentPeriod: (dateKey: string) => Promise<void>;
   removePeriod: (id: string) => Promise<void>;
+  setDisplayName: (displayName?: string) => Promise<void>;
   setCycleLength: (cycleLength?: number) => Promise<void>;
   clearAllData: () => Promise<void>;
   exportData: () => string;
@@ -15,7 +16,7 @@ type CycleContextValue = CycleData & {
 
 const CycleContext = createContext<CycleContextValue | undefined>(undefined);
 
-const initialData: CycleData = { periods: [], settings: {} };
+const initialData: CycleData = { periods: [], settings: {}, profile: {} };
 
 export function CycleProvider({ children }: PropsWithChildren) {
   const [data, setData] = useState<CycleData>(initialData);
@@ -55,6 +56,9 @@ export function CycleProvider({ children }: PropsWithChildren) {
     },
     async removePeriod(id) {
       await updateData({ ...data, periods: data.periods.filter((period) => period.id !== id) });
+    },
+    async setDisplayName(displayName) {
+      await updateData({ ...data, profile: { ...data.profile, displayName } });
     },
     async setCycleLength(cycleLength) {
       await updateData({ ...data, settings: { ...data.settings, cycleLength } });

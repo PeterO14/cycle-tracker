@@ -4,7 +4,7 @@ import { CycleData } from '../types/cycle';
 
 const storageKey = '@cycle-notes/data-v1';
 
-const emptyData: CycleData = { periods: [], settings: {} };
+const emptyData: CycleData = { periods: [], settings: {}, profile: {} };
 
 export async function loadCycleData(): Promise<CycleData> {
   const saved = await AsyncStorage.getItem(storageKey);
@@ -15,6 +15,7 @@ export async function loadCycleData(): Promise<CycleData> {
     return {
       periods: Array.isArray(data.periods) ? data.periods : [],
       settings: data.settings ?? {},
+      profile: data.profile ?? {},
     };
   } catch {
     return emptyData;

@@ -9,8 +9,8 @@ A small, privacy-first cycle tracking app built with Expo and React Native.
 - See the current cycle day and a carefully labelled next-period estimate once
   enough dates have been logged.
 - Browse a small monthly calendar, add a past start date, and remove mistakes.
-- Set an optional typical cycle length, export data through the device share
-  sheet, or delete everything.
+- Add an optional display name and typical cycle length, export data through
+  the device share sheet, or delete everything.
 
 ## Run it locally
 
